@@ -1,6 +1,7 @@
 const btn = document.getElementById('btn');
 
 btn.addEventListener('click',()=>{
+    //This Function Deals With Inputvalue , Response and API
     async function fetchGitHubProfile(){
     const username = document.getElementById('inputValue').value;
     const url = `https://api.github.com/users/${username}`;
@@ -16,7 +17,7 @@ btn.addEventListener('click',()=>{
              displayError(error.message);
    }
 }
-
+//For Displaying Profile 
 function displayProfile(profile){
 const profileContainer = document.getElementById('profileContainer');
 profileContainer.innerHTML=`
@@ -31,6 +32,7 @@ profileContainer.innerHTML=`
 <p><b>Link:</b>${profile.url}</p>
 `;
 }
+    //For Any Error That Occurs During Processing or Fetching Of User's data
 function displayError(message){
 const profileContainer = document.getElementById('profileContainer');
 profileContainer.innerHTML=`<p style="color:red;"> Error:${message}</p>`
@@ -40,36 +42,3 @@ fetchGitHubProfile();
 
 
 
-/*async function fetchGitHubProfile() {
-    const username = document.getElementById("usernameInput").value;
-    const url = `https://api.github.com/users/${username}`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('User not found');
-        }
-        const data = await response.json();
-        displayProfile(data);
-    } catch (error) {
-        displayError(error.message);
-    }
-}
-
-function displayProfile(profile) {
-    const profileContainer = document.getElementById("profileContainer");
-    profileContainer.innerHTML = `
-        <h2>${profile.name}</h2>
-        <p><strong>Username:</strong> ${profile.login}</p>
-        <p><strong>Location:</strong> ${profile.location}</p>
-        <p><strong>Followers:</strong> ${profile.followers}</p>
-        <p><strong>Following:</strong> ${profile.following}</p>
-        <p><strong>Public Repositories:</strong> ${profile.public_repos}</p>
-        <img src="${profile.avatar_url}" alt="Avatar" style="width:100px;height:100px;">
-    `;
-}
-
-function displayError(message) {
-    const profileContainer = document.getElementById("profileContainer");
-    profileContainer.innerHTML = `<p style="color: red;">Error: ${message}</p>`;
-}
-*/
